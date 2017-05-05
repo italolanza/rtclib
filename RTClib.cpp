@@ -234,7 +234,6 @@ uint8_t RTC_DS1307::readByteInRam(uint8_t address) {
 
     Wire.requestFrom(DS1307_ADDRESS, 1);
     uint8_t data = Wire.read();
-    Wire.endTransmission();
 
     return data;
 }
@@ -248,7 +247,6 @@ void RTC_DS1307::readBytesInRam(uint8_t address, uint8_t length, uint8_t* p_data
     for (uint8_t i = 0; i < length; i++) {
         p_data[i] = Wire.read();
     }
-    Wire.endTransmission();
 }
 
 void RTC_DS1307::writeByteInRam(uint8_t address, uint8_t data) {
@@ -411,7 +409,6 @@ void RTC_DS1388::EEPROMReadPage(uint8_t page, uint8_t *data) {
   for(uint8_t i=0; i<8; i++){
     data[i] = Wire.read();
   }
-  Wire.endTransmission();
 #ifdef ENERGIA
   delay(10); // Needed on MSP430 !!
 #endif
